@@ -22,7 +22,10 @@ public class RequestBodyJsonServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // HTTP의 messageBody를 바이트코드로 직접 가져오기
         ServletInputStream inputStream = request.getInputStream();
+        // Spring에서 제공하는 StreamUtils로 messageBody를 String으로 변환
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
         // messageBody json 형식의 String을 HelloData 객체 형식에 맞게 변환
