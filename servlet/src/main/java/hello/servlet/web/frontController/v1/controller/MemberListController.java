@@ -18,7 +18,7 @@ public class MemberListController implements ControllerV1 {
 
     @Override
     public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Member> members = store.findAllMembers();
+        List<Member> members = store.findAll();
         request.setAttribute("members", members);
         String viewPath = "/WEB-INF/views/members.jsp";
         RequestDispatcher dispatcher= request.getRequestDispatcher(viewPath);

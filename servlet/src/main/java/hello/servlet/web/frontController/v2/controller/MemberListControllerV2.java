@@ -5,7 +5,6 @@ import hello.servlet.domain.member.MemberRepository;
 import hello.servlet.web.frontController.MyView;
 import hello.servlet.web.frontController.v2.ControllerV2;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +17,7 @@ public class MemberListControllerV2 implements ControllerV2 {
 
     @Override
     public MyView process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Member> members = store.findAllMembers();
+        List<Member> members = store.findAll();
         request.setAttribute("members", members);
         return new MyView("/WEB-INF/views/members.jsp");
     }

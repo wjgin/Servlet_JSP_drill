@@ -37,7 +37,7 @@ class MemberRepositoryTest {
         memberRepository.save(member2);
 
         // when
-        List<Member> allMembers = memberRepository.findAllMembers();
+        List<Member> allMembers = memberRepository.findAll();
 
         // then
         assertThat(allMembers.size()).isEqualTo(2); // 저장된 member가 2명이 맞는지 확인

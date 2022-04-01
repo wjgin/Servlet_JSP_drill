@@ -40,7 +40,7 @@ public class MemberRepository {
     }
 
     // 모든 member 조회
-    public List<Member> findAllMembers(){
+    public List<Member> findAll(){
         return new ArrayList<>(store.values());
     }
 
