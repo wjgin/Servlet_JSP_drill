@@ -14,3 +14,27 @@
       * servlet(request, response)를 종속성 제거 -> ModelView 객체를 통해 데이터를 전달
       * 반복적인 view 이름 제거 -> 논리 이름만 사용
       * controller 로직의 단순화 -> FrontController의 처리가 늘어남
+
+
+## Spring MVC framwork 직접 만들기
+
+## Request / Response / @annotation의 이해
+### Request
+* @RequestMapping: 모든 method의 url 매핑
+* @GetMapping: @RequestMapping(method=GET)
+* @PostMapping: @RequestMapping(method=POST)
+* @PatchMapping: @RequestMapping(method=PATCH)
+* @DeleteMapping: @RequestMapping(method=DELETE)
+* @RequestParam: Get, Post에 의한 쿼리
+   * name option: method 인자와 parameter의 value 일치 시, 생략
+   * required option: default=true -> false 설정 시, 요청이 없는 함수의 인자는 null
+   * default option: 요청이 null일 경우, 함수의 인자를 default로 채움 -> required에 상관이 없어짐
+* @ModelAttribute: paramter -> Object binding
+   * not primitive type(int, Interger, String), argument resolver
+
+### Response
+* ResponseEntity<>(http message, http status): HTTP header, body 정보를 가지는 객체
+   * StringHttpConverter를 통한 HTTP message -> String -> HTTP Message
+* @ResponseBody: return value는 view가 아닌 HTTP message를 제공
+* @RestController: @Controller + @ResponseBody
+* @ResponseStatus: @ResponseBody를 이용한 return시 상태 코드의 부재를 해결 -> 정적인 상태만 제공
