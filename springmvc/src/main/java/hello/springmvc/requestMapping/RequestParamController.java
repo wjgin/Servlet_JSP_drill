@@ -1,7 +1,9 @@
 package hello.springmvc.requestMapping;
 
+import hello.springmvc.HelloData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,10 +60,10 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/request-param-required")
     public String requestParamRequired
-            (
-             @RequestParam(required = true) String username,    // 기본 값: True -> 파라미터로 들어오지 않으면 400 오류
-             @RequestParam(required = false) Integer age    //  false 설정 시 파라미터값이 들어오지 않을 수 있음 -> null -> 기본형 (primitive) int x Integer o
-            ) {
+    (
+            @RequestParam(required = true) String username,    // 기본 값: True -> 파라미터로 들어오지 않으면 400 오류
+            @RequestParam(required = false) Integer age    //  false 설정 시 파라미터값이 들어오지 않을 수 있음 -> null -> 기본형 (primitive) int x Integer o
+    ) {
         log.info("username={}, age={}", username, age);
         return "ok";
     }
@@ -82,8 +84,26 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/request-param-map")
     // 동일한 이름의 parameter가 들어온다면, @MultiValueMap을 사용할 수 있다. -> 특별한 경우가 아니면 잘 사용하지 않는다.
-    public String requestParamMap (@RequestParam Map<String, Object> paramMap) {
+    public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
         log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    // @ModelAttribute 를 사용하면 HelloData 객체를 직접 찾아서 parameters 와 properties 를 binding
+    public String modelAttributeV1(@ModelAttribute HelloData helloData) {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2")
+    // @ModelAttribute 생략 가능
+    // String, int, Integer 등의 단순타입 @RequestParam, 그 외 class는 @ModelAttribute (argument resolver로 지정된 타입 제외)가 적용
+    public String modelAttributeV2(HelloData helloData) {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        log.info("helloData={}", helloData);    // @Data로 toString 생성
         return "ok";
     }
 }
