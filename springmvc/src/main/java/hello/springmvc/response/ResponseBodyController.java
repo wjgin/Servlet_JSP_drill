@@ -34,7 +34,6 @@ public class ResponseBodyController {
         return "ok";
     }
 
-    @ResponseBody
     @RequestMapping("/response-body-json-v1")
     public ResponseEntity<HelloData> responseJsonV1() {
         HelloData helloData = new HelloData();
