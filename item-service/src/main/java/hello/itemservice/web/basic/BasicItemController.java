@@ -8,6 +8,7 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -84,10 +85,19 @@ public class BasicItemController  {
     }
 
     // PRG (Post Redirect Get) 방식으로 새로고침 시 중복 등록 방지
-    @PostMapping("/add")
+    // @PostMapping("/add")
     public String addItemV5(Item item) {
         itemRepository.save(item);
-        return "redirect:/basic/item/" + item.getId();
+        return "redirect:/basic/items/" + item.getId();
+    }
+
+    // RedirectAttribute의 사용: pathVariable, ?쿼리, url 인코딩 제공
+    @PostMapping("/add")
+    public String addItemV6(Item item, RedirectAttributes redirectAttributes) {
+        Item saveItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", saveItem.getId());
+        redirectAttributes.addAttribute("status", true); // 나머지는 url ? 쿼리로 전송
+        return "redirect:/basic/items/{itemId}";
     }
 
     @GetMapping("/{itemId}/edit")
