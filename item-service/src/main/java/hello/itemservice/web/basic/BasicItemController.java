@@ -77,12 +77,18 @@ public class BasicItemController  {
     }
 
     // 생선한 객체의 경우(단순 타입이 아닌 것) @ModelAttribute 도 생략 가능
-    @PostMapping("/add")
+    // @PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
         return "basic/item";
     }
 
+    // PRG (Post Redirect Get) 방식으로 새로고침 시 중복 등록 방지
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/item/" + item.getId();
+    }
 
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
