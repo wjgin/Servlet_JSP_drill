@@ -38,3 +38,15 @@
 * @ResponseBody: return value는 view가 아닌 HTTP message를 제공
 * @RestController: @Controller + @ResponseBody
 * @ResponseStatus: @ResponseBody를 이용한 return시 상태 코드의 부재를 해결 -> 정적인 상태만 제공
+
+
+# Thymeleaf Basic
+
+## how to import thymeleaf in HTML file
+ * <html xmlns:th="http://www.thymeleaf.org">
+ * <html xmlns:th="http://w3.thymeleaf.org">
+ * <html xmlns:th="http://thymeleaf.org">
+ 
+## th:text vs th:utext
+ * thymeleaf use escape text as a default
+ * ex: < -> &lt
