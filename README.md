@@ -43,10 +43,32 @@
 # Thymeleaf Basic
 
 ## how to import thymeleaf in HTML file
- * <html xmlns:th="http://www.thymeleaf.org">
- * <html xmlns:th="http://w3.thymeleaf.org">
- * <html xmlns:th="http://thymeleaf.org">
+ * \<html xmlns:th=\"http://www.thymeleaf.org\"\>
+ * \<html xmlns:th=\"http://w3.thymeleaf.org\"\>
+ * \<html xmlns:th=\"http://thymeleaf.org\"\>
  
 ## th:text vs th:utext
  * thymeleaf use escape text as a default
  * ex: < -> &lt
+
+## th:with 변수사용
+ * 해당 scope 안에서만 사용 가능<br>
+   \<div th:with = \"first=${data.name}\><br>
+   &nbsp;&nbsp;&nbsp;... 안쪽 scope에서 ${first}로 변수 사용 가능<br>
+   \</div\>
+
+## 다양한 data 접근 방법
+ * Object<br>
+   property 접근: th:text = \"${data.name}\"<br>
+   name 접근:     th:text = \"${data[\'name\']}\"<br>
+   getter 접근:   th:text = \"${data.getName()}\"<br>
+ 
+ * List<br>
+   property 접근: th:text = \"${list[index].name}\"<br>
+   name 접근:     th:text = \"${list[index][\'name\']}\"<br>
+   getter 접근:   th:text = \"${list[index].getName()}\"<br>
+                       
+ * Map<br>
+   property 접근: th:text = \"${map[\'key\'].name}\"<br>
+   name 접근:     th:text = \"${map[\'key\'][\'name\']}\"<br>
+   getter 접근:   th:text = \"${map[\'key\'].getName()}\"<br>
