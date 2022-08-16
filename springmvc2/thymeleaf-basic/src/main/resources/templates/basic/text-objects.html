@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Thymeleaf Objects</h1>
+
+<h2>기본 객체</h2>
+타임리프가 기본 제공하는 객체들
+<ul>
+    <li>${#request} = <span th:text="${#request}"></span></li>
+    <li>${#response} = <span th:text="${#response}"></span></li>
+    <li>${#session} = <span th:text="${#session}"></span></li>
+    <li>${#servletContext} = <span th:text="${#servletContext}"></span></li>
+    <li>${#locale} = <span th:text="${#locale}"></span></li>
+
+</ul>
+
+<h2>편의 객체</h2>
+Spring을 통해서 가져오는 데이터
+<ul>
+    <li>${session.sessionData} = <span th:text="${session.sessionData}"></span></li>
+    <li>${@helloBean} = <span th:text="${@helloBean}"></span></li>
+    <li>${@helloBean.hello('spring')} = <span th:text="${@helloBean.hello('spring')}"></span></li>
+    <li>${param} = <span th:text="${param}"></span></li>
+    <li>${param.paramData} = <span th:text="${param.paramData}"></span></li>
+</ul>
+
+</body>
+</html>
