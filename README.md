@@ -72,3 +72,27 @@
    property 접근: th:text = \"${map[\'key\'].name}\"<br>
    name 접근:     th:text = \"${map[\'key\'][\'name\']}\"<br>
    getter 접근:   th:text = \"${map[\'key\'].getName()}\"<br>
+   
+## Objects: thymeleaf가 제공하는 객체
+   ### 기본 객체
+   * \<span th:text=\"${\#request}\"
+   * \<span th:text=\"${#response}\"
+   * \<span th:text=\"${#session}\"
+   * \<span th:text=\"${#servletContext}\"
+   * \<span th:text=\"${#locale}\"
+
+
+  ### 편의 객체
+  * session in Model: \<span th:text="${session.sessionData}"
+  * spring bean: \<span th:text=\"${\@helloBean}\"
+  * spring bean method: \<span th:text=\"${\@helloBean.hello(\'spring\')}\"
+  * url parameter: \<span th:text=\"${param}\"
+  * url parameter data: \<span th:text=\"${param.paramData}\"
+
+   
+## Link
+ * basic: \<a th:href=\"@{/hello}\"
+ * query parameter: \<a th:href=\"@{/hello\(param1=${param1}, param2 =${param2})}\"
+ * path: \<a th:href=\"@{/hello/\{param1\}/\{param2\}(param1=${param1}, param2 =${param2})}\"
+ * path + query parameter : \<a th:href=\"@{/hello/{param1}(param1 =${param1}, param2=${param2})}\"
+      
