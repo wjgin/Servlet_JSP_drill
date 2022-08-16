@@ -63,6 +63,13 @@ public class BasicController {
         }
     }
 
+    @GetMapping("link")
+    public String linkTest(Model model){
+        model.addAttribute("param1", "data1");
+        model.addAttribute("param2", "data2");
+        return "basic/text-link";
+    }
+
     @Data
     static class User {
         private String name;
